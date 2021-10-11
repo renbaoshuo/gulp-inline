@@ -23,7 +23,7 @@ var typeMap = {
       return '<style' + attribute + '>\n' + String(contents) + '\n</style>'
     },
     filter: function (el) {
-      return el.attr('rel') === 'stylesheet' && isLocal(el.attr('href'))
+      return el.attr('rel') === 'stylesheet' && isLocal(el.attr('href')) && el.attr('inline') !== undefined
     },
     getSrc: function (el) {
       return el.attr('href')
@@ -37,7 +37,7 @@ var typeMap = {
       return '<script ' + str + '>\n' + String(contents) + '\n</script>'
     },
     filter: function (el) {
-      return isLocal(el.attr('src'))
+      return isLocal(el.attr('src')) && el.attr('inline') !== undefined
     },
     getSrc: function (el) {
       return el.attr('src')
@@ -52,7 +52,7 @@ var typeMap = {
     },
     filter: function (el) {
       var src = el.attr('src')
-      return !/\.svg$/.test(src)
+      return !/\.svg$/.test(src) && el.attr('inline') !== undefined
     },
     getSrc: function (el) {
       return el.attr('src')
@@ -104,6 +104,7 @@ var typeMap = {
           return children.length === 1
             && child[0].tagName === 'use'
             && /\.svg#\S+$/.test(src)
+            && el.attr('inline') !== undefined
       }
     },
     getSrc: function (el) {
