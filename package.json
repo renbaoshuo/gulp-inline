@@ -1,6 +1,6 @@
 {
   "name": "@renbaoshuo/gulp-inline",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Inline styles and scripts into an html file.",
   "main": "index.js",
   "scripts": {
